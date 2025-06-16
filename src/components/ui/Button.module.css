@@ -1,0 +1,40 @@
+.button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* 色のバリエーション */
+.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* サイズのバリエーション */
+.sm {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.md {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.lg {
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

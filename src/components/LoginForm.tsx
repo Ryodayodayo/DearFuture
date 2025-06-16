@@ -1,6 +1,8 @@
 import styles from "./LoginForm.module.css"
 import { useState } from "react"
 import { useAuth } from '../contexts/AuthContext';
+import { InputField } from "./ui/InputForm";
+import { Button } from "./ui/Button";
 
 export const LoginForm = () => {
     const { signin, clearError} = useAuth();
@@ -46,35 +48,31 @@ export const LoginForm = () => {
             <div className = {styles.container}>
                 <h1 className = {styles.h1}>ログイン</h1>
                 <form onSubmit={handleSubmit} className = {styles.form}>
-                    <div>
-                    <label className = {styles.label}>メールアドレス</label>
-                    <input 
+
+                    <InputField
+                    label = "メールアドレス"
                     name="email" 
                     type="email" 
-                    className = {styles.field}
                     value={email}
                     placeholder="email" 
                     disabled={loading}
                     onChange={(event) => handleChangeEmail(event)}/>
                     
-                    </div>
-                    <div>
-                    <label className = {styles.label}>パスワード</label>
-                    <input 
+                    <InputField 
+                    label = "パスワード"
                     name="password" 
                     type="password" 
-                    className = {styles.field}
                     placeholder="password" 
                     value={password} 
                     disabled={loading}
                     onChange={(event) => handleChangePassword(event)}/>
-                    </div>
 
                     {error && <p className={styles.errorMessage}>{error}</p>}
 
-                    <button className = {styles.button}>
+                    <Button type="submit" disabled={loading} variant="primary" size="md">
                         {loading ? 'ログイン中...' : 'ログイン'}
-                    </button>
+                    </Button>
+
                 </form>
             </div>
         </div>
