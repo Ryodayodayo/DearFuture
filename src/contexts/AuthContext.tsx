@@ -82,8 +82,6 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
         setError(null);
     };
 
-
-
     const value = {
         currentUser,
         loading,
