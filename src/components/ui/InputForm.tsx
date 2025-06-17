@@ -1,4 +1,5 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
+import styles from './InputForm.module.css';
 
 interface InputFieldProps {
     label: string;
@@ -10,35 +11,48 @@ interface InputFieldProps {
     required?: boolean;
     disabled?: boolean;
     error?: string;
+    size?: 'sm' | 'md' | 'lg';
+    variant?: 'default' | 'outlined' | 'filled';
 }
 
-export const InputField : React.FC<InputFieldProps> = ({ 
+export const InputField: React.FC<InputFieldProps> = ({ 
     label, 
-    type, 
+    type = "text",
     name, 
     value, 
     onChange, 
     placeholder, 
     required = false,
-    disabled,
-    error 
+    disabled = false,
+    error,
+    size = 'md',
+    variant = 'default'
 }) => {
+    const inputClassNames = [
+        styles.input,
+        styles[variant],
+        styles[size],
+        error ? styles.inputError : '',
+        disabled ? styles.disabled : ''
+    ].filter(Boolean).join(' ');
+
     return (
-        <div>
-        <label>
-            {label}
-            {required && <span>*</span>}
-        </label>
-        <input
-            name={name}
-            type={type}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            required={required}
-            disabled = {disabled}
-        />
-        {error && <p>{error}</p>}
+        <div className={styles.formGroup}>
+            <label className={styles.label}>
+                {label}
+                {required && <span className={styles.required}>*</span>}
+            </label>
+            <input
+                className={inputClassNames}
+                name={name}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+                required={required}
+                disabled={disabled}
+            />
+            {error && <p className={styles.error}>{error}</p>}
         </div>
-  );
+    );
 };

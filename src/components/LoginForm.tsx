@@ -54,17 +54,23 @@ export const LoginForm = () => {
                     name="email" 
                     type="email" 
                     value={email}
+                    variant="default"
                     placeholder="email" 
+                    size = "md"
                     disabled={loading}
+                    required
                     onChange={(event) => handleChangeEmail(event)}/>
                     
                     <InputField 
                     label = "パスワード"
                     name="password" 
                     type="password" 
-                    placeholder="password" 
+                    variant="default"
+                    placeholder="passwords" 
+                    size = "md"
                     value={password} 
                     disabled={loading}
+                    required
                     onChange={(event) => handleChangePassword(event)}/>
 
                     {error && <p className={styles.errorMessage}>{error}</p>}
