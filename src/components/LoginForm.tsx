@@ -31,10 +31,10 @@ export const LoginForm = () => {
             alert ("ログインしました");
             navigate("/dashboard");
 
-
         } catch (error: any) {
             console.error("ログインエラー:", error);
             setError("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
+            
         } finally {
             setLoading(false);
         }

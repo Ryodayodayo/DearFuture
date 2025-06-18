@@ -12,8 +12,8 @@ import { PrivateRoute } from './routes/PrivateRoute';
 function App() {
   return (
     <AuthProvider>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path = "/" element = {<Home />}/>
 
