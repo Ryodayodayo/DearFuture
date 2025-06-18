@@ -42,6 +42,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
         return unsubscribe;
     }, []); 
 
+    // サインアップ
     const signup = async (email:string, password:string) => {
         try {
             setError(null);

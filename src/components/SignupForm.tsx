@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useAuth } from '../contexts/AuthContext';
 import { InputField } from "./ui/InputForm";
 import { Button } from "./ui/Button";
+import { useNavigate } from "react-router-dom";
 
 export const SignupForm = () => {
     const { signup, clearError} = useAuth();
@@ -10,6 +11,8 @@ export const SignupForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (event : React.FormEvent) => {
         event.preventDefault();
@@ -25,8 +28,8 @@ export const SignupForm = () => {
             event.preventDefault();
             await signup(email, password);
             console.log("サインアップ成功");
-            alert ("サインアップしました");
-
+            alert ("サインアップしました。");
+            navigate("/dashboard");
         } catch (error: any) {
             console.error("サインアップエラー:", error);
             setError("サインアップに失敗しました。メールアドレスとパスワードを確認してください。");

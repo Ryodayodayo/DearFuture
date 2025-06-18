@@ -1,5 +1,6 @@
 import styles from "./LoginForm.module.css"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext';
 import { InputField } from "./ui/InputForm";
 import { Button } from "./ui/Button";
@@ -10,6 +11,8 @@ export const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (event : React.FormEvent) => {
         event.preventDefault();
@@ -26,6 +29,8 @@ export const LoginForm = () => {
             await signin(email, password);
             console.log("ログイン成功");
             alert ("ログインしました");
+            navigate("/dashboard");
+
 
         } catch (error: any) {
             console.error("ログインエラー:", error);
