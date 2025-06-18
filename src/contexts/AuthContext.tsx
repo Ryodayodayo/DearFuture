@@ -1,12 +1,13 @@
 import { createContext, useContext, useState} from "react"
 import { useEffect } from 'react';
-import { User, UserCredential, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { User, UserCredential, onAuthStateChanged, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword} from 'firebase/auth';
 import { auth } from '../firebase';
 
 interface AuthContextType {
     currentUser: User | null;
     loading: boolean;
     error: string | null;
+    signup: (email: string, password: string) => Promise<UserCredential>;
     signin: (email: string, password: string) => Promise<UserCredential>;
     logout: () => Promise<void>;
     clearError: () => void;
@@ -40,6 +41,23 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
 
         return unsubscribe;
     }, []); 
+
+    const signup = async (email:string, password:string) => {
+        try {
+            setError(null);
+            const result = await createUserWithEmailAndPassword(auth,email,password);
+            return result;
+        } catch(error) {
+        if (error instanceof Error) {
+            setError(error.message);
+        } else if (typeof error === 'string') {
+            setError(error);
+        } else {
+            setError("不明なエラーが発生しました");
+        }
+        throw error;            
+        }
+    };
 
     //ログイン
     const signin = async (email:string, password:string) => {
@@ -86,6 +104,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
         currentUser,
         loading,
         error,
+        signup,
         signin,
         logout,
         clearError
