@@ -56,7 +56,7 @@ export const DiaryPage = () => {
                     name="content"
                     value={formData.content}
                     onChange={handleChange('content')}
-                    placeholder="今日はどんな一日でしたか？思い出や感じたことを自由に書いてください"
+                    placeholder="今日はどんな一日でしたか？"
                     required={true}
                     error={errors.content}
                     size="lg"
