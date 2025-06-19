@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
-import styles from './InputForm.module.css';
+import styles from './AuthInputField.module.css';
 
-interface InputFieldProps {
+interface AuthInputFieldProps {
     label: string;
     type?: string;
     name: string;
@@ -15,7 +15,7 @@ interface InputFieldProps {
     variant?: 'default' | 'outlined' | 'filled';
 }
 
-export const InputField: React.FC<InputFieldProps> = ({ 
+export const AuthInputField: React.FC<AuthInputFieldProps> = ({ 
     label, 
     type = "text",
     name, 

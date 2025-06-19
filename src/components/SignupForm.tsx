@@ -1,7 +1,7 @@
 import styles from "./LoginForm.module.css"
 import { useState } from "react"
 import { useAuth } from '../contexts/AuthContext';
-import { InputField } from "./ui/InputForm";
+import { AuthInputField } from "./ui/AuthInputField";
 import { Button } from "./ui/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -52,7 +52,7 @@ export const SignupForm = () => {
                 <h1 className = {styles.h1}>ユーザー登録</h1>
                 <form onSubmit={handleSubmit} className = {styles.form}>
 
-                    <InputField
+                    <AuthInputField
                     label = "メールアドレス"
                     name="email" 
                     type="email" 
@@ -64,7 +64,7 @@ export const SignupForm = () => {
                     required
                     onChange={(event) => handleChangeEmail(event)}/>
                     
-                    <InputField 
+                    <AuthInputField 
                     label = "パスワード"
                     name="password" 
                     type="password" 

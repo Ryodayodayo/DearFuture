@@ -3,7 +3,7 @@ import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Login } from "./pages/Login"
 import { Signup } from "./pages/Signup"
-import { DashBoard } from "./pages/DashBoard"
+import { DiaryPage } from "./pages/DiaryPage"
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import { PublicRoute } from './routes/PublicRoute';
@@ -27,9 +27,9 @@ function App() {
               <Login />
             </PublicRoute>}/>
 
-          <Route path = "/dashboard" element = {
+          <Route path = "/diarypage" element = {
             <PrivateRoute>
-              <DashBoard />
+              <DiaryPage />
             </PrivateRoute>}/>
 
         </Routes>

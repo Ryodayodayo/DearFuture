@@ -15,5 +15,5 @@ export const PublicRoute = ({ children }: PublicRouteProps ) => {
             </div>
         );
 
-    return currentUser ? <Navigate to="/dashboard" /> : <div>{children}</div>;
+    return currentUser ? <Navigate to="/diarypage" /> : <div>{children}</div>;
 };

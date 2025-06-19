@@ -2,7 +2,7 @@ import styles from "./LoginForm.module.css"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext';
-import { InputField } from "./ui/InputForm";
+import { AuthInputField } from "./ui/AuthInputField";
 import { Button } from "./ui/Button";
 
 export const LoginForm = () => {
@@ -54,7 +54,7 @@ export const LoginForm = () => {
                 <h1 className = {styles.h1}>ログイン</h1>
                 <form onSubmit={handleSubmit} className = {styles.form}>
 
-                    <InputField
+                    <AuthInputField
                     label = "メールアドレス"
                     name="email" 
                     type="email" 
@@ -66,7 +66,7 @@ export const LoginForm = () => {
                     required
                     onChange={(event) => handleChangeEmail(event)}/>
                     
-                    <InputField 
+                    <AuthInputField 
                     label = "パスワード"
                     name="password" 
                     type="password" 
