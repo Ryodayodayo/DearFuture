@@ -36,7 +36,7 @@ export const DiaryEdit = () => {
     };
 
     return (
-        <div style={{ maxWidth: '300px', margin: '0 auto', padding: '20px' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '20px' }}>
             <h1>今日の日記</h1>
             
             <DiaryTextField
