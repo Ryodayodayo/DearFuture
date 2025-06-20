@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import classNames from 'classnames';
 import styles from './AuthInputField.module.css';
 
 interface AuthInputFieldProps {
@@ -28,13 +29,13 @@ export const AuthInputField: React.FC<AuthInputFieldProps> = ({
     size = 'md',
     variant = 'default'
 }) => {
-    const inputClassNames = [
+    const inputClassNames = classNames ([
         styles.input,
         styles[variant],
         styles[size],
         error ? styles.inputError : '',
         disabled ? styles.disabled : ''
-    ].filter(Boolean).join(' ');
+    ]);
 
     return (
         <div className={styles.formGroup}>
