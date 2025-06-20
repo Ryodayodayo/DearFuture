@@ -55,19 +55,19 @@
 .sm {
   padding: 8px 12px;
   font-size: 14px;
-  min-height: 80px;
+  min-height: 40px;
 }
 
 .md {
   padding: 12px 16px;
   font-size: 16px;
-  min-height: 120px;
+  min-height: 60px;
 }
 
 .lg {
   padding: 16px 20px;
   font-size: 18px;
-  min-height: 160px;
+  min-height: 80px;
 }
 
 /* エラー状態 */

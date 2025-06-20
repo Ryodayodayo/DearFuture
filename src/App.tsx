@@ -3,9 +3,9 @@ import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { Login } from "./pages/Login"
 import { Signup } from "./pages/Signup"
-import { DiaryEdit } from "./components/DiaryEdit"
+import { Diary } from "./pages/Diary"
 import { AuthProvider } from './contexts/AuthContext';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PublicRoute } from './routes/PublicRoute';
 import { PrivateRoute } from './routes/PrivateRoute';
 
@@ -29,7 +29,7 @@ function App() {
 
           <Route path = "/diarypage" element = {
             <PrivateRoute>
-              <DiaryEdit />
+              <Diary />
             </PrivateRoute>}/>
 
         </Routes>
