@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import classNames from 'classnames';
 import styles from "./DiaryTextField.module.css"
 
 interface DiaryTextFieldProps {
@@ -27,13 +28,13 @@ export const DiaryTextField: React.FC< DiaryTextFieldProps > = ({
     variant = 'default'
 }) => {
 
-    const textareaClassNames = [
+    const textareaClassNames = classNames ([
         styles.input,
         styles[variant],
         styles[size],
         error ? styles.inputError : '',
         disabled ? styles.disabled : ''
-    ].filter(Boolean).join(' ');
+    ]);
 
     return (
         <div>

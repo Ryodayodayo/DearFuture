@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
+import classNames from 'classnames';
 import styles from "./Button.module.css"
 
 interface ButtonProps{
@@ -18,19 +19,19 @@ export const Button :React.FC<ButtonProps> = ({
     size = 'md',
     disabled = false,
 }) => {
-  const classNames = [
+
+  const btnClass = classNames([
     styles.button,
     styles[variant],
     styles[size],
-    disabled ? styles.disabled : '' //disabled === trueの時だけ適用
-  ].filter(Boolean).join(' '); //classNameはstringを期待するため、undefindや空文字をfilterして""で結合する
-    
+    disabled ? styles.disabled : ''
+  ]);
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className = {classNames}
+      className = {btnClass}
     >
       {children}
     </button>
