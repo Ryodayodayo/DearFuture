@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { DiaryTextField } from '../components/ui/DiaryTextField';
+import { DiaryTextField } from './ui/DiaryTextField';
 
-export const DiaryPage = () => {
+export const DiaryEdit = () => {
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -43,7 +43,7 @@ export const DiaryPage = () => {
                 label="タイトル"
                 name="title"
                 value={formData.title}
-                onChange={handleChange('title')}
+                onChange={handleChange("title")}
                 placeholder="今日のタイトル"
                 required={true}
                 error={errors.title}
