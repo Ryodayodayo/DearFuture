@@ -17,3 +17,11 @@
   font-size: 2rem;
   font-weight: bold;
 }
+
+.title:hover {
+  color: #f0f0f0;
+}
+
+.title:hover {
+  cursor: pointer;
+}

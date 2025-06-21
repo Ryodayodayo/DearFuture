@@ -11,7 +11,9 @@ export const Header = () => {
 
   return (
     <div className={styles.header}>
-      <h1 className = {styles.title}>DearFuture</h1>
+      <h1 className = {styles.title} onClick={() => navigate("/")}>
+        DearFuture
+      </h1>
       {currentUser ? (
         <Logout />
       ) : (
