@@ -1,4 +1,4 @@
-import { DiaryEdit } from "../components/DiaryEdit"
+import { DiaryCreate } from "../components/DiaryCreate"
 import { Modal } from "../components/ui/Modal"
 import { useState } from "react"
 import { DiaryList } from "../components/DiaryList"
@@ -14,7 +14,7 @@ export const Diary = () => {
             <div className = {styles.container}>
                 <DiaryList />
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                    <DiaryEdit />
+                    <DiaryCreate />
                 </Modal>
             </div>
         </div>
