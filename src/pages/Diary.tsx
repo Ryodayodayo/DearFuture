@@ -15,7 +15,6 @@ export const Diary = () => {
                     <DiaryEdit />
                 </Modal>
             </div>
-
         </div>
     );
 }

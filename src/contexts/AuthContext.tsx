@@ -82,8 +82,7 @@ export const AuthProvider = ({children} : AuthProviderProps) => {
         try {
         setError(null);
         await signOut(auth);
-        // ログアウト後に強制的にルートに遷移
-        window.location.href = "/";
+
 
         } catch (error) {
         if (error instanceof Error) {
