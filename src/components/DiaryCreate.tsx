@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { DiaryTextField } from './ui/DiaryTextField';
 import { useDb } from '../contexts/DbContext';
 import { useAuth } from '../contexts/AuthContext'; 
-import styles from './DiaryEdit.module.css';
+import styles from './DiaryCreate.module.css';
 
-export const DiaryEdit = () => {
+export const DiaryCreate = () => {
     const { addDocument } = useDb();
     const { currentUser } = useAuth();
     const [formData, setFormData] = useState({
