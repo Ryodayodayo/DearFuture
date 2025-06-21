@@ -1,143 +1,84 @@
+/* 共通スタイル */
 .input {
-  width: 80%;
-  border: 2px solid #e1e5e9;
-  border-radius: 8px;
+  width: 100%;
+  min-height: 80px;
+  font-size: 1rem;
   padding: 12px 16px;
-  font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  background-color: #fefefe;
-  transition: all 0.2s ease-in-out;
+  border-radius: 8px;
   resize: vertical;
-  outline: none;
-  color: #2c3e50;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: #fff;
+  color: #333;
+  border: 1.5px solid #d1d5db;
+  box-sizing: border-box;
 }
 
 .input:focus {
-  border-color: #8b5a3c;
-  background-color: #fffef8;
-  box-shadow: 0 0 0 3px rgba(139, 90, 60, 0.1);
-}
-
-.input::placeholder {
-  color: #a0a8b0;
-  font-style: italic;
-}
-
-/* バリエーション */
-
-.outlined {
-  background-color: transparent;
-  border: 2px solid #d4af37;
-  color: #2c3e50;
-}
-
-.outlined:focus {
-  border-color: #b8941f;
-  background-color: #fffef5;
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
-}
-
-.filled {
-  background-color: #f8f6f0;
-  border: 2px solid transparent;
-  color: #2c3e50;
-}
-
-.filled:focus {
-  background-color: #fff;
-  border-color: #8b5a3c;
-  box-shadow: 0 0 0 3px rgba(139, 90, 60, 0.1);
+  outline: none;
 }
 
 /* サイズバリエーション */
 .sm {
+  font-size: 0.95rem;
+  min-height: 48px;
   padding: 8px 12px;
-  font-size: 14px;
-  min-height: 40px;
 }
-
 .md {
-  padding: 12px 16px;
-  font-size: 16px;
-  min-height: 60px;
-}
-
-.lg {
-  padding: 16px 20px;
-  font-size: 18px;
+  font-size: 1rem;
   min-height: 80px;
+  padding: 12px 16px;
+}
+.lg {
+  font-size: 1.1rem;
+  min-height: 140px;
+  padding: 16px 20px;
 }
 
-/* エラー状態 */
+/* バリアント: outlined */
+.outlined {
+  background: #fff;
+  border: 2px solid #bdbdbd;
+}
+.outlined:focus {
+  border: 2px solid #1976d2;
+  background: #f5faff;
+  box-shadow: 0 0 0 2px #90caf9;
+  outline: none; 
+}
+
+/* バリアント: filled */
+.filled {
+  background: #fffbe7;
+  border: 2px solid #ffd59e;
+}
+.filled:focus {
+  border-color: #ffb74d;
+  background: #fff8e1;
+  box-shadow: 0 0 0 2px #ffe0b2;
+}
+
+/* デフォルトバリアント */
+.default:focus {
+  border-color: #64b5f6;
+  box-shadow: 0 0 0 2px #90caf9;
+}
+
+/* エラー時 */
 .inputError {
-  border-color: #e74c3c;
-  background-color: #fdf2f2;
-  color: #c0392b;
+  border-color: #ee9f9f;
+  background: #fff4f4;
 }
 
-.inputError:focus {
-  border-color: #c0392b;
-  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
-}
-
-.inputError::placeholder {
-  color: #e74c3c;
-  opacity: 0.7;
-}
-
-/* 無効状態 */
+/* 無効時 */
 .disabled {
-  background-color: #f5f5f5;
-  color: #999;
-  border-color: #ddd;
+  background: #f5f5f5;
+  color: #aaa;
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
-.disabled::placeholder {
-  color: #bbb;
-}
-
-/* 日記らしい追加スタイル */
-.input {
-  /* 紙のような質感 */
-  background-image: 
-    linear-gradient(90deg, transparent 79px, #e8e8e8 79px, #e8e8e8 81px, transparent 81px),
-    linear-gradient(#f7f7f7, #f7f7f7);
-  background-size: 100% 24px;
-  line-height: 24px;
-  padding-left: 90px;
-  background-attachment: local;
-}
-
-.input:focus {
-  background-image: 
-    linear-gradient(90deg, transparent 79px, #d4af37 79px, #d4af37 81px, transparent 81px),
-    linear-gradient(#fffef8, #fffef8);
-}
-
-/* ホバー効果 */
-.input:hover:not(:focus):not(.disabled) {
-  border-color: #c7a572;
-  background-color: #fffef5;
-}
-
-/* スクロールバーのスタイル（Webkit系ブラウザ） */
-.input::-webkit-scrollbar {
-  width: 8px;
-}
-
-.input::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.input::-webkit-scrollbar-thumb {
-  background: #c7a572;
-  border-radius: 4px;
-}
-
-.input::-webkit-scrollbar-thumb:hover {
-  background: #8b5a3c;
+/* プレースホルダー */
+.input::placeholder {
+  color: #b0b8c1;
+  opacity: 0.9;
+  font-style: italic;
 }

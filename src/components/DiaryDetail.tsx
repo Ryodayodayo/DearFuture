@@ -1,4 +1,5 @@
 import React from "react";
+import styles  from "./DiaryDetail.module.css";
 
 interface DiaryDetailProps {
   diary: {
@@ -13,10 +14,10 @@ export const DiaryDetail: React.FC<DiaryDetailProps> = ({ diary}) => {
   if (!diary) return null;
 
   return (
-    <div style={{ marginTop: "24px", padding: "16px", border: "1px solid #ccc", borderRadius: "8px" }}>
-      <h3>{diary.title}</h3>
-      <div>内容: {diary.content}</div>
-      <div>気分: {diary.mood}</div>
+    <div className={styles.diaryDetailContainer}>
+      <div className={styles.title}>{diary.title}</div>
+      <div className={styles.content}>{diary.content}</div>
+      <div className={styles.mood}>気分: {diary.mood}</div>
     </div>
   );
 };

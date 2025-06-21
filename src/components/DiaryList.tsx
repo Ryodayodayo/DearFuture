@@ -3,10 +3,12 @@ import { useDb } from "../contexts/DbContext";
 import { useAuth } from "../contexts/AuthContext";
 import { DiaryDetail } from "./DiaryDetail";
 import { Modal } from "./ui/Modal";
+import styles from "./DiaryList.module.css";
 
 interface Diary {
   id: string;
   title: string;
+content?: string;
 }
 
 export const DiaryList = () => {
@@ -14,7 +16,7 @@ export const DiaryList = () => {
   const { currentUser } = useAuth();
   const [diaries, setDiaries] = useState<Diary[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedDiary, setSelectedDiary] = useState<any>(null);
+  const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
 
   useEffect(() => {
     const fetchDiaries = async () => {
@@ -50,22 +52,29 @@ export const DiaryList = () => {
   }
 
   return (
-    <div>
-      <h2>日記一覧</h2>
-      <div>
-        {diaries.map((diary) => (
-          <div key={diary.id} onClick={() => handleSelect(diary.id)}>
-            {diary.title}
-          </div>
-        ))}
-      </div>
-      <Modal isOpen={!!selectedDiary} onClose={() => setSelectedDiary(null)}>
-        {selectedDiary && (
-          <DiaryDetail
-            diary={selectedDiary}
-          />
-        )}
-      </Modal>
+    <div className={styles.diaryListContainer}>
+        <div className={styles.diaryListWrapper}>
+            <h2>日記一覧</h2>
+            <div className={styles.diaryList}>
+                {diaries.map((diary) => (
+                <div key={diary.id} onClick={() => handleSelect(diary.id)} className={styles.diaryItem}>
+                    {diary.title}
+                    <div className={styles.summary}>
+                        {diary.content?.slice(0, 20) ?? ""}...
+                    </div>
+                </div>
+                ))}
+            </div>
+            <div className={styles.diaryDetailContainer}>
+                <Modal isOpen={!!selectedDiary} onClose={() => setSelectedDiary(null)}>
+                    {selectedDiary && (
+                    <DiaryDetail
+                        diary={selectedDiary}
+                    />
+                    )}
+                </Modal>
+            </div>
+        </div>
     </div>
   );
 };
