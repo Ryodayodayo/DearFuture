@@ -30,6 +30,7 @@ export const DiaryEdit = () => {
         
         if (!formData.title) newErrors.title = 'タイトルは必須です';
         if (!formData.content) newErrors.content = '内容は必須です';
+        if (!formData.mood) newErrors.mood = '気分は必須です';
         
         setErrors(newErrors);
         
@@ -83,6 +84,8 @@ export const DiaryEdit = () => {
                     value={formData.mood}
                     onChange={handleChange('mood')}
                     placeholder="今日の気分を一言で表すと？"
+                    required={true}
+                    error={errors.mood}
                     variant="filled"
                     size="sm"
                 />
