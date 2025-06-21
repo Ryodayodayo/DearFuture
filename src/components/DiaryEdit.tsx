@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { DiaryTextField } from './ui/DiaryTextField';
+import { useDb } from '../contexts/DbContext';
+import { useAuth } from '../contexts/AuthContext'; 
 
 export const DiaryEdit = () => {
+    const { addDocument } = useDb();
+    const { currentUser } = useAuth();
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -21,7 +25,7 @@ export const DiaryEdit = () => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const newErrors: {[key: string]: string} = {};
         
         if (!formData.title) newErrors.title = 'タイトルは必須です';
@@ -30,8 +34,17 @@ export const DiaryEdit = () => {
         setErrors(newErrors);
         
         if (Object.keys(newErrors).length === 0) {
-            // 保存処理
-            console.log('日記を保存:', formData);
+            if (!currentUser) {
+                alert("ログインしてください");
+                return;
+            }
+            try {
+                await addDocument(`users/${currentUser.uid}/diaries`, formData); // コレクション名は"diaries"例
+                alert("日記を保存しました！");
+                setFormData({ title: '', content: '', mood: '' }); // フォームリセット
+            } catch (e) {
+                alert("日記の保存に失敗しました");
+            }
         }
     };
 
