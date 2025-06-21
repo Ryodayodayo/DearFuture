@@ -10,8 +10,12 @@ export const Diary = () => {
 
     return (
         <div>
-            <button onClick={() => setIsModalOpen(true)}>日記を作成</button>
-            <div className = {styles.container}>
+            <div className={styles.buttonContainer}>
+                <button onClick={() => setIsModalOpen(true)}>
+                    日記を作成
+                </button>
+            </div>
+            <div className={styles.container}>
                 <DiaryList />
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
                     <DiaryCreate />

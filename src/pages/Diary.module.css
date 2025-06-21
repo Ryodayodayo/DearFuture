@@ -3,4 +3,14 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    position: relative;
+}
+.buttonContainer {
+    position: fixed;
+    right: 540px;   
+    bottom: 40px;  
+    z-index: 1000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
