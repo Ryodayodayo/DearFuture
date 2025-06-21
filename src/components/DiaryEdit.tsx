@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { DiaryTextField } from './ui/DiaryTextField';
 import { useDb } from '../contexts/DbContext';
 import { useAuth } from '../contexts/AuthContext'; 
+import styles from './DiaryEdit.module.css';
 
 export const DiaryEdit = () => {
     const { addDocument } = useDb();
@@ -50,7 +51,7 @@ export const DiaryEdit = () => {
     };
 
     return (
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '20px' }}>
+        <div className={styles.diaryEditContainer}>
             <h1>今日の日記</h1>
             
             <DiaryTextField
@@ -63,8 +64,8 @@ export const DiaryEdit = () => {
                 error={errors.title}
                 size="sm"
             />
-            
-            <div style={{ marginTop: '20px' }}>
+
+            <div className={styles.textFieldContainer}>
                 <DiaryTextField
                     label="日記の内容"
                     name="content"
@@ -76,8 +77,8 @@ export const DiaryEdit = () => {
                     size="lg"
                 />
             </div>
-            
-            <div style={{ marginTop: '20px' }}>
+
+            <div className={styles.textFieldContainer}>
                 <DiaryTextField
                     label="今日の気分"
                     name="mood"
@@ -86,22 +87,13 @@ export const DiaryEdit = () => {
                     placeholder="今日の気分を一言で表すと？"
                     required={true}
                     error={errors.mood}
-                    variant="filled"
                     size="sm"
                 />
             </div>
             
             <button 
                 onClick={handleSubmit}
-                style={{ 
-                    marginTop: '30px', 
-                    padding: '12px 24px',
-                    backgroundColor: '#8b5a3c',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    cursor: 'pointer'
-                }}
+                className={styles.submitButton}
             >
                 日記を保存
             </button>

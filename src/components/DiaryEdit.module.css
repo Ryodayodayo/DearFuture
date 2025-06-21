@@ -1,0 +1,22 @@
+.diaryEditContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.textFieldContainer {
+    margin-top: 20px;
+}
+
+.submitButton {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #64b5f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.submitButton:hover {
+    background-color: #4a9df0;
+}
