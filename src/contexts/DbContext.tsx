@@ -11,14 +11,14 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
-interface DbContextType {
+type DbContextType = {
   getCollection: (name: string) => Promise<any[]>;
   addDocument: (name: string, data: any) => Promise<void>;
   getDocument: (name: string, id: string) => Promise<any | null>;
   updateDocument: (name: string, id: string, data: any) => Promise<void>;
   deleteDocument: (name: string, id: string) => Promise<void>;
   setDocument: (name: string, id: string, data: any) => Promise<void>;
-}
+};
 
 const DbContext = createContext<DbContextType | undefined>(undefined);
 

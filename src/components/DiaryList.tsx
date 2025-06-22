@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDb } from '../contexts/DbContext';
 import { useAuth } from '../contexts/AuthContext';
 import { DiaryDetail } from './DiaryDetail';
 import { Modal } from './ui/Modal';
+import { DiaryEdit } from './DiaryEdit';
+import { Button } from './ui/Button';
 import styles from './DiaryList.module.css';
 
-interface Diary {
+type Diary = {
   id: string;
   title: string;
   content?: string;
-}
+};
 
 export const DiaryList = () => {
   const { getCollection } = useDb();
@@ -17,26 +19,43 @@ export const DiaryList = () => {
   const [diaries, setDiaries] = useState<Diary[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDiary, setSelectedDiary] = useState<Diary | null>(null);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const fetchDiaries = useCallback(async () => {
+    if (!currentUser) return;
+    setLoading(true);
+    try {
+      const data = await getCollection(`users/${currentUser.uid}/diaries`);
+      setDiaries(data);
+    } catch (e) {
+      alert('日記の取得に失敗しました');
+    } finally {
+      setLoading(false);
+    }
+  }, [currentUser, getCollection]);
 
   useEffect(() => {
-    const fetchDiaries = async () => {
-      if (!currentUser) return;
-      setLoading(true);
-      try {
-        const data = await getCollection(`users/${currentUser.uid}/diaries`);
-        setDiaries(data);
-      } catch (e) {
-        alert('日記の取得に失敗しました');
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!currentUser) return;
+    setDiaries([]);
+    setSelectedDiary(null);
+    setIsEditMode(false);
+    setLoading(true);
+    // 日記の取得
     fetchDiaries();
-  }, [currentUser, getCollection]);
+  }, [currentUser, fetchDiaries]);
 
   const handleSelect = (diaryId: string) => {
     const diary = diaries.find((d) => d.id === diaryId) || null;
     setSelectedDiary(diary);
+    setIsEditMode(false);
+    setLoading(false);
+  };
+
+  const handleEditSaved = () => {
+    setIsEditMode(false);
+    setSelectedDiary(null);
+    fetchDiaries();
+    setLoading(false);
   };
 
   if (!currentUser) {
@@ -74,7 +93,17 @@ export const DiaryList = () => {
             isOpen={!!selectedDiary}
             onClose={() => setSelectedDiary(null)}
           >
-            {selectedDiary && <DiaryDetail diary={selectedDiary} />}
+            {selectedDiary && !isEditMode && (
+              <div>
+                <DiaryDetail diary={selectedDiary} />
+                <Button variant="primary" onClick={() => setIsEditMode(true)}>
+                  編集
+                </Button>
+              </div>
+            )}
+            {selectedDiary && isEditMode && (
+              <DiaryEdit diary={selectedDiary} onSaved={handleEditSaved} />
+            )}
           </Modal>
         </div>
       </div>

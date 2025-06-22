@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './DiaryDetail.module.css';
 
-interface DiaryDetailProps {
+type DiaryDetailProps = {
   diary: {
     id: string;
     title: string;
     content?: string;
     mood?: string;
   } | null;
-}
+};
 
 export const DiaryDetail: React.FC<DiaryDetailProps> = ({ diary }) => {
   if (!diary) return null;
