@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useDb } from "../contexts/DbContext";
-import { useAuth } from "../contexts/AuthContext";
-import { DiaryDetail } from "./DiaryDetail";
-import { Modal } from "./ui/Modal";
-import styles from "./DiaryList.module.css";
+import React, { useEffect, useState } from 'react';
+import { useDb } from '../contexts/DbContext';
+import { useAuth } from '../contexts/AuthContext';
+import { DiaryDetail } from './DiaryDetail';
+import { Modal } from './ui/Modal';
+import styles from './DiaryList.module.css';
 
 interface Diary {
   id: string;
   title: string;
-content?: string;
+  content?: string;
 }
 
 export const DiaryList = () => {
@@ -26,7 +26,7 @@ export const DiaryList = () => {
         const data = await getCollection(`users/${currentUser.uid}/diaries`);
         setDiaries(data);
       } catch (e) {
-        alert("日記の取得に失敗しました");
+        alert('日記の取得に失敗しました');
       } finally {
         setLoading(false);
       }
@@ -35,7 +35,7 @@ export const DiaryList = () => {
   }, [currentUser, getCollection]);
 
   const handleSelect = (diaryId: string) => {
-    const diary = diaries.find(d => d.id === diaryId) || null;
+    const diary = diaries.find((d) => d.id === diaryId) || null;
     setSelectedDiary(diary);
   };
 
@@ -53,28 +53,31 @@ export const DiaryList = () => {
 
   return (
     <div className={styles.diaryListContainer}>
-        <div className={styles.diaryListWrapper}>
-            <h2>日記一覧</h2>
-            <div className={styles.diaryList}>
-                {diaries.map((diary) => (
-                <div key={diary.id} onClick={() => handleSelect(diary.id)} className={styles.diaryItem}>
-                    {diary.title}
-                    <div className={styles.summary}>
-                        {diary.content?.slice(0, 20) ?? ""}...
-                    </div>
-                </div>
-                ))}
+      <div className={styles.diaryListWrapper}>
+        <h2>日記一覧</h2>
+        <div className={styles.diaryList}>
+          {diaries.map((diary) => (
+            <div
+              key={diary.id}
+              onClick={() => handleSelect(diary.id)}
+              className={styles.diaryItem}
+            >
+              {diary.title}
+              <div className={styles.summary}>
+                {diary.content?.slice(0, 20) ?? ''}...
+              </div>
             </div>
-            <div className={styles.diaryDetailContainer}>
-                <Modal isOpen={!!selectedDiary} onClose={() => setSelectedDiary(null)}>
-                    {selectedDiary && (
-                    <DiaryDetail
-                        diary={selectedDiary}
-                    />
-                    )}
-                </Modal>
-            </div>
+          ))}
         </div>
+        <div className={styles.diaryDetailContainer}>
+          <Modal
+            isOpen={!!selectedDiary}
+            onClose={() => setSelectedDiary(null)}
+          >
+            {selectedDiary && <DiaryDetail diary={selectedDiary} />}
+          </Modal>
+        </div>
+      </div>
     </div>
   );
 };

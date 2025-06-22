@@ -1,19 +1,15 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import React from 'react';
 
 interface PublicRouteProps {
-    children : React.ReactNode;
+  children: React.ReactNode;
 }
 
-export const PublicRoute = ({ children }: PublicRouteProps ) => {
-    const { currentUser, loading } = useAuth();
+export const PublicRoute = ({ children }: PublicRouteProps) => {
+  const { currentUser, loading } = useAuth();
 
-    if (loading) 
-        return (
-            <div>
-                Loading...
-            </div>
-        );
+  if (loading) return <div>Loading...</div>;
 
-    return currentUser ? <Navigate to="/diarypage" /> : <div>{children}</div>;
+  return currentUser ? <Navigate to="/diarypage" /> : <div>{children}</div>;
 };

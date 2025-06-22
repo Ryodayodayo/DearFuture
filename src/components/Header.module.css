@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black; 
+  background-color: black;
   color: white;
   padding: 16px 24px;
   align-items: center;
@@ -10,7 +10,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  height : 4rem ;
+  height: 4rem;
 }
 
 .title {

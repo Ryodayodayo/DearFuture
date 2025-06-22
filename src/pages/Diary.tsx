@@ -1,26 +1,23 @@
-import { DiaryCreate } from "../components/DiaryCreate"
-import { Modal } from "../components/ui/Modal"
-import { useState } from "react"
-import { DiaryList } from "../components/DiaryList"
-import styles from "./Diary.module.css"
+import { DiaryCreate } from '../components/DiaryCreate';
+import { Modal } from '../components/ui/Modal';
+import React, { useState } from 'react';
+import { DiaryList } from '../components/DiaryList';
+import styles from './Diary.module.css';
 
 export const Diary = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [isModalOpen, setIsModalOpen ] = useState (false)
-
-    return (
-        <div>
-            <div className={styles.buttonContainer}>
-                <button onClick={() => setIsModalOpen(true)}>
-                    日記を作成
-                </button>
-            </div>
-            <div className={styles.container}>
-                <DiaryList />
-                <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                    <DiaryCreate />
-                </Modal>
-            </div>
-        </div>
-    );
-}
+  return (
+    <div>
+      <div className={styles.buttonContainer}>
+        <button onClick={() => setIsModalOpen(true)}>日記を作成</button>
+      </div>
+      <div className={styles.container}>
+        <DiaryList />
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <DiaryCreate />
+        </Modal>
+      </div>
+    </div>
+  );
+};
