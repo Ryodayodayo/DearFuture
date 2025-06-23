@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useDb } from 'contexts/DbContext';
+import { useAuth } from 'contexts/AuthContext';
+
 import { DiaryTextField } from './ui/DiaryTextField';
-import { useDb } from '../contexts/DbContext';
-import { useAuth } from '../contexts/AuthContext';
 import styles from './DiaryCreate.module.css';
 
 type DiaryCreateProps = {
@@ -34,9 +35,15 @@ export const DiaryCreate = ({ onCreated }: DiaryCreateProps) => {
   const handleSubmit = async () => {
     const newErrors: { [key: string]: string } = {};
 
-    if (!formData.title) newErrors.title = 'タイトルは必須です';
-    if (!formData.content) newErrors.content = '内容は必須です';
-    if (!formData.mood) newErrors.mood = '気分は必須です';
+    if (!formData.title) {
+      newErrors.title = 'タイトルは必須です';
+    }
+    if (!formData.content) {
+      newErrors.content = '内容は必須です';
+    }
+    if (!formData.mood) {
+      newErrors.mood = '気分は必須です';
+    }
 
     setErrors(newErrors);
 

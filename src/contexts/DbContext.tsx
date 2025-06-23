@@ -9,8 +9,7 @@ import {
   deleteDoc,
   setDoc,
 } from 'firebase/firestore';
-
-import { db } from '@/firebase';
+import { db } from 'firebaseConfig';
 
 type DbContextType = {
   getCollection: (name: string) => Promise<Array<any>>;

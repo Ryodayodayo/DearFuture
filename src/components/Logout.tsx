@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { useAuth } from 'contexts/AuthContext';
 
 import { Button } from './ui/Button';
-
-import { useAuth } from '@/contexts/AuthContext';
 
 export const Logout = () => {
   const [isLoading, setLoading] = useState(false);

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from 'components/ui/Button';
+import { useAuth } from 'contexts/AuthContext';
 
 import styles from './Home.module.css';
-
-import { Button } from '@/components/ui/Button';
-import { useAuth } from '@/contexts/AuthContext';
 
 export const Home = () => {
   const navigate = useNavigate();

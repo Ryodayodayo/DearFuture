@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { DiaryTextField } from './ui/DiaryTextField';
-import { useDb } from '../contexts/DbContext';
-import { DiaryData } from '../types/DiaryData';
+import { useAuth } from 'contexts/AuthContext';
+import { useDb } from 'contexts/DbContext';
+import type { DiaryData } from 'types/DiaryData';
+
 import styles from './DiaryEdit.module.css';
-import { useAuth } from '../contexts/AuthContext';
+import { DiaryTextField } from './ui/DiaryTextField';
 
 type DiaryEditProps = {
   diary: DiaryData;
@@ -19,7 +20,7 @@ export const DiaryEdit: React.FC<DiaryEditProps> = ({ diary, onSaved }) => {
     mood: diary.mood || '',
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const handleChange =
     (field: string) => (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -35,9 +36,15 @@ export const DiaryEdit: React.FC<DiaryEditProps> = ({ diary, onSaved }) => {
 
   const handleSubmit = async () => {
     const newErrors: { [key: string]: string } = {};
-    if (!formData.title) newErrors.title = 'タイトルは必須です';
-    if (!formData.content) newErrors.content = '内容は必須です';
-    if (!formData.mood) newErrors.mood = '気分は必須です';
+    if (!formData.title) {
+      newErrors.title = 'タイトルは必須です';
+    }
+    if (!formData.content) {
+      newErrors.content = '内容は必須です';
+    }
+    if (!formData.mood) {
+      newErrors.mood = '気分は必須です';
+    }
 
     setErrors(newErrors);
 
@@ -58,7 +65,9 @@ export const DiaryEdit: React.FC<DiaryEditProps> = ({ diary, onSaved }) => {
           updatedData,
         );
         alert('日記を更新しました！');
-        if (onSaved) onSaved();
+        if (onSaved) {
+          onSaved();
+        }
       } catch (e) {
         alert('日記の更新に失敗しました');
       } finally {
@@ -107,9 +116,9 @@ export const DiaryEdit: React.FC<DiaryEditProps> = ({ diary, onSaved }) => {
       <button
         onClick={handleSubmit}
         className={styles.submitButton}
-        disabled={loading}
+        disabled={isLoading}
       >
-        {loading ? '保存中...' : '上書き保存'}
+        {isLoading ? '保存中...' : '上書き保存'}
       </button>
     </div>
   );

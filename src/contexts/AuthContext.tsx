@@ -1,3 +1,4 @@
+import { auth } from 'firebaseConfig';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { User, UserCredential } from 'firebase/auth';
 import {
@@ -6,8 +7,6 @@ import {
   signOut,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-
-import { auth } from '@/firebase';
 
 type AuthContextType = {
   currentUser: User | null;
