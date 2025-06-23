@@ -1,16 +1,18 @@
-import styles from './LoginForm.module.css';
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
+import styles from './LoginForm.module.css';
 import { AuthInputField } from './ui/AuthInputField';
 import { Button } from './ui/Button';
-import { useNavigate } from 'react-router-dom';
+
+import { useAuth } from '@/contexts/AuthContext';
 
 export const SignupForm = () => {
   const { signup } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,7 +29,6 @@ export const SignupForm = () => {
     try {
       event.preventDefault();
       await signup(email, password);
-      console.log('サインアップ成功');
       alert('サインアップしました。');
       navigate('/dashboard');
     } catch (error: unknown) {
@@ -60,7 +61,7 @@ export const SignupForm = () => {
             variant="default"
             placeholder="email"
             size="md"
-            disabled={loading}
+            disabled={isLoading}
             required
             onChange={(event) => handleChangeEmail(event)}
           />
@@ -73,15 +74,20 @@ export const SignupForm = () => {
             placeholder="passwords"
             size="md"
             value={password}
-            disabled={loading}
+            disabled={isLoading}
             required
             onChange={(event) => handleChangePassword(event)}
           />
 
           {error && <p className={styles.errorMessage}>{error}</p>}
 
-          <Button type="submit" disabled={loading} variant="primary" size="md">
-            {loading ? 'サインアップ中...' : 'サインアップ'}
+          <Button
+            type="submit"
+            disabled={isLoading}
+            variant="primary"
+            size="md"
+          >
+            {isLoading ? 'サインアップ中...' : 'サインアップ'}
           </Button>
         </form>
       </div>

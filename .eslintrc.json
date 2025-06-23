@@ -6,10 +6,94 @@
     "plugin:prettier/recommended"
   ],
   "plugins": ["react", "@typescript-eslint", "prettier"],
+    // 追加: parserOptions
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "prefer-const": "error",
-    "prefer-arrow-callback": "error"
+    "prefer-arrow-callback": "error",
+  
+// 追加
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["strictCamelCase", "StrictPascalCase", "UPPER_CASE"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "parameter",
+        "format": ["strictCamelCase"]
+      },
+      {
+        "selector": "class",
+        "format": ["StrictPascalCase"],
+        "custom": {
+          "regex": "send|start|find",
+          "match": false
+        }
+      },
+      {
+        "selector": "typeLike",
+        "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": "enumMember",
+        "format": ["StrictPascalCase"]
+      },
+      {
+        "selector": "variable",
+        "types": ["boolean"],
+        "format": ["PascalCase"],
+        "prefix": ["is", "can", "should", "has", "did", "will"]
+      }
+    ],
+    "@typescript-eslint/array-type": [
+      "error",
+      {
+        "default": "generic"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "warnOnUnassignedImports": true
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../"]
+      }
+    ],
+    "curly": ["error", "all"],
+    "object-shorthand": ["error", "always"],
+    "no-nested-ternary": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+    "react/jsx-pascal-case": "error",
+    "react/self-closing-comp": "error",
+    "react/jsx-curly-brace-presence": "error"
   }
 }

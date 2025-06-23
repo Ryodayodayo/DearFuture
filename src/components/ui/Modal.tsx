@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './Modal.module.css';
 
 type ModalProps = {
@@ -12,7 +13,9 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className={styles.overlay} onClick={onClose}>
