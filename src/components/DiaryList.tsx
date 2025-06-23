@@ -1,9 +1,10 @@
 import React from 'react';
+import type { DiaryData } from 'types/DiaryData';
+
 import styles from './DiaryList.module.css';
-import { DiaryData } from '../types/DiaryData';
 
 type DiaryListProps = {
-  diaries: DiaryData[];
+  diaries: Array<DiaryData>;
   loading: boolean;
   onSelect: (diary: DiaryData) => void;
 };

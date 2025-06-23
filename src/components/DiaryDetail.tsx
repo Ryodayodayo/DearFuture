@@ -1,5 +1,6 @@
 import React from 'react';
-import { DiaryData } from '../types/DiaryData';
+import type { DiaryData } from 'types/DiaryData';
+
 import styles from './DiaryDetail.module.css';
 
 type DiaryDetailProps = {
@@ -7,7 +8,9 @@ type DiaryDetailProps = {
 };
 
 export const DiaryDetail: React.FC<DiaryDetailProps> = ({ diary }) => {
-  if (!diary) return null;
+  if (!diary) {
+    return null;
+  }
 
   const formattedDate = diary.createdAt
     ? new Date(diary.createdAt).toLocaleString('ja-JP', {

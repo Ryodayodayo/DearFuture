@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'contexts/AuthContext';
 
 import styles from './LoginForm.module.css';
 import { AuthInputField } from './ui/AuthInputField';
 import { Button } from './ui/Button';
-
-import { useAuth } from '@/contexts/AuthContext';
 
 export const SignupForm = () => {
   const { signup } = useAuth();

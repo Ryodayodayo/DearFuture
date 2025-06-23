@@ -1,7 +1,8 @@
-import styles from './LoginForm.module.css';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
+
+import styles from './LoginForm.module.css';
 import { AuthInputField } from './ui/AuthInputField';
 import { Button } from './ui/Button';
 
@@ -10,7 +11,7 @@ export const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,7 +28,6 @@ export const LoginForm = () => {
     try {
       event.preventDefault();
       await signin(email, password);
-      console.log('ログイン成功');
       alert('ログインしました');
       navigate('/dashboard');
     } catch (error: unknown) {
@@ -60,7 +60,7 @@ export const LoginForm = () => {
             variant="default"
             placeholder="email"
             size="md"
-            disabled={loading}
+            disabled={isLoading}
             required
             onChange={(event) => handleChangeEmail(event)}
           />
@@ -73,15 +73,20 @@ export const LoginForm = () => {
             placeholder="passwords"
             size="md"
             value={password}
-            disabled={loading}
+            disabled={isLoading}
             required
             onChange={(event) => handleChangePassword(event)}
           />
 
           {error && <p className={styles.errorMessage}>{error}</p>}
 
-          <Button type="submit" disabled={loading} variant="primary" size="md">
-            {loading ? 'ログイン中...' : 'ログイン'}
+          <Button
+            type="submit"
+            disabled={isLoading}
+            variant="primary"
+            size="md"
+          >
+            {isLoading ? 'ログイン中...' : 'ログイン'}
           </Button>
         </form>
       </div>
