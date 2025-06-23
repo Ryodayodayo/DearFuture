@@ -9,5 +9,6 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.enable": true
+  "prettier.enable": true,
+  "files.eol": "\n"
 }
