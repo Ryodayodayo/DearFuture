@@ -5,7 +5,7 @@ import styles from './Button.module.css';
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'third';
   size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Button } from './ui/Button';
 
 export const Logout = () => {
   const [loading, setLoading] = useState(false);
@@ -23,9 +24,14 @@ export const Logout = () => {
 
   return (
     <div>
-      <button onClick={handleLogout} disabled={loading}>
+      <Button
+        onClick={handleLogout}
+        disabled={loading}
+        size="md"
+        variant="secondary"
+      >
         {loading ? 'ログアウト中...' : 'ログアウト'}
-      </button>
+      </Button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );

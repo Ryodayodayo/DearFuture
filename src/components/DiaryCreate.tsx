@@ -42,7 +42,11 @@ export const DiaryCreate = () => {
         return;
       }
       try {
-        await addDocument(`users/${currentUser.uid}/diaries`, formData);
+        const diaryData = {
+          ...formData,
+          createdAt: new Date().toISOString(),
+        };
+        await addDocument(`users/${currentUser.uid}/diaries`, diaryData);
         alert('日記を保存しました！');
         setFormData({ title: '', content: '', mood: '' });
       } catch (e) {
