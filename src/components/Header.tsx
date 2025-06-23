@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Logout } from './Logout';
+import { Button } from './ui/Button';
 
 export const Header = () => {
   const { currentUser } = useAuth();
@@ -16,9 +17,9 @@ export const Header = () => {
       {currentUser ? (
         <Logout />
       ) : (
-        <button className={styles.button} onClick={() => navigate('/login')}>
+        <Button size="md" variant="third" onClick={() => navigate('/login')}>
           ログイン
-        </button>
+        </Button>
       )}
     </div>
   );

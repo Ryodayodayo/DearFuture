@@ -8,6 +8,8 @@
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "prefer-const": "error",
+    "prefer-arrow-callback": "error"
   }
 }

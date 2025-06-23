@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Home.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { Button } from '../components/ui/Button';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ export const Home = () => {
   return (
     <div className={styles.homeContainer}>
       <h1 className={styles.title}>DearFuture</h1>
-      <p className={styles.catchcopy}>あなたの毎日を未来へつなぐ日記アプリ</p>
+      <p className={styles.catchcopy}>未来の自分から手紙が届く</p>
       <section className={styles.section}>
         <h2>アプリの特徴</h2>
         <ul>
@@ -29,11 +30,29 @@ export const Home = () => {
       </section>
       <div className={styles.navigateGroup}>
         {currentUser ? (
-          <button onClick={() => navigate('/diarypage')}>日記ページへ</button>
+          <Button
+            onClick={() => navigate('/diarypage')}
+            size="lg"
+            variant="third"
+          >
+            日記ページへ
+          </Button>
         ) : (
           <>
-            <button onClick={() => navigate('/signup')}>新規登録</button>
-            <button onClick={() => navigate('/login')}>ログイン</button>
+            <Button
+              onClick={() => navigate('/signup')}
+              size="lg"
+              variant="third"
+            >
+              新規登録
+            </Button>
+            <Button
+              onClick={() => navigate('/login')}
+              size="lg"
+              variant="third"
+            >
+              ログイン
+            </Button>
           </>
         )}
       </div>

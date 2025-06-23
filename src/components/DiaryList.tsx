@@ -95,8 +95,14 @@ export const DiaryList = () => {
           >
             {selectedDiary && !isEditMode && (
               <div>
-                <DiaryDetail diary={selectedDiary} />
-                <Button variant="primary" onClick={() => setIsEditMode(true)}>
+                <div className={styles.diaryDetailContent}>
+                  <DiaryDetail diary={selectedDiary} />
+                </div>
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => setIsEditMode(true)}
+                >
                   編集
                 </Button>
               </div>

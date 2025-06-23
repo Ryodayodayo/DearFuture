@@ -43,19 +43,3 @@
   gap: 16px;
   margin-top: 24px;
 }
-
-.navigateGroup button {
-  background: #64b5f6;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 24px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.1);
-}
-
-.navigateGroup button:hover {
-  background: #1976d2;
-}

@@ -54,10 +54,14 @@ export const DiaryEdit: React.FC<DiaryEditProps> = ({ diary, onSaved }) => {
       }
       setLoading(true);
       try {
+        const updatedData = {
+          ...formData,
+          updatedAt: new Date().toISOString(),
+        };
         await updateDocument(
           `users/${currentUser.uid}/diaries`,
           diary.id,
-          formData,
+          updatedData,
         );
         alert('日記を更新しました！');
         if (onSaved) onSaved();

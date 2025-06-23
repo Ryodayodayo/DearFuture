@@ -18,6 +18,11 @@
   color: white;
 }
 
+.third {
+  background-color: #0ea5e9;
+  color: white;
+}
+
 /* サイズのバリエーション */
 .sm {
   font-size: 0.8rem;
