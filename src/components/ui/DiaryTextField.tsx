@@ -1,8 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+
 import styles from './DiaryTextField.module.css';
 
-interface DiaryTextFieldProps {
+type DiaryTextFieldProps = {
   label?: string;
   name: string;
   value: string;
@@ -13,10 +15,9 @@ interface DiaryTextFieldProps {
   error?: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'default' | 'outlined' | 'filled';
-}
+};
 
 export const DiaryTextField: React.FC<DiaryTextFieldProps> = ({
-  label,
   name,
   value,
   onChange,

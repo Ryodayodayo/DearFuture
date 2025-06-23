@@ -1,15 +1,18 @@
-import { useAuth } from '../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 import React from 'react';
 
-interface PrivateRouteProps {
+import { useAuth } from '@/contexts/AuthContext';
+
+type PrivateRouteProps = {
   children: React.ReactNode;
-}
+};
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const { currentUser, loading } = useAuth();
+  const { currentUser, isLoading } = useAuth();
 
-  if (loading) return <div>Loading...</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return currentUser ? <>{children}</> : <Navigate to="/" />;
 };

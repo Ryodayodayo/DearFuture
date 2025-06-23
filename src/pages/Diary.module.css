@@ -14,3 +14,7 @@
   justify-content: center;
   align-items: center;
 }
+
+.diaryDetailContent {
+  margin-bottom: 16px;
+}

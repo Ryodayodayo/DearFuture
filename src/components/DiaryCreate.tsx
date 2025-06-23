@@ -4,7 +4,11 @@ import { useDb } from '../contexts/DbContext';
 import { useAuth } from '../contexts/AuthContext';
 import styles from './DiaryCreate.module.css';
 
-export const DiaryCreate = () => {
+type DiaryCreateProps = {
+  onCreated: () => void;
+};
+
+export const DiaryCreate = ({ onCreated }: DiaryCreateProps) => {
   const { addDocument } = useDb();
   const { currentUser } = useAuth();
   const [formData, setFormData] = useState({
@@ -49,6 +53,7 @@ export const DiaryCreate = () => {
         await addDocument(`users/${currentUser.uid}/diaries`, diaryData);
         alert('日記を保存しました！');
         setFormData({ title: '', content: '', mood: '' });
+        onCreated();
       } catch (e) {
         alert('日記の保存に失敗しました');
       }

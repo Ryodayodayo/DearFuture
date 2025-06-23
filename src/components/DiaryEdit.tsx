@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import { DiaryTextField } from './ui/DiaryTextField';
 import { useDb } from '../contexts/DbContext';
+import { DiaryData } from '../types/DiaryData';
 import styles from './DiaryEdit.module.css';
 import { useAuth } from '../contexts/AuthContext';
 
-type Diary = {
-  id: string;
-  title: string;
-  content?: string;
-  mood?: string;
-};
-
 type DiaryEditProps = {
-  diary: Diary;
+  diary: DiaryData;
   onSaved?: () => void;
 };
 

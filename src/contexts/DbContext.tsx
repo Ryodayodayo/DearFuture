@@ -1,5 +1,4 @@
 import React, { createContext, useContext } from 'react';
-import { db } from '../firebase';
 import {
   collection,
   getDocs,
@@ -11,8 +10,10 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
+import { db } from '@/firebase';
+
 type DbContextType = {
-  getCollection: (name: string) => Promise<any[]>;
+  getCollection: (name: string) => Promise<Array<any>>;
   addDocument: (name: string, data: any) => Promise<void>;
   getDocument: (name: string, id: string) => Promise<any | null>;
   updateDocument: (name: string, id: string, data: any) => Promise<void>;
@@ -24,7 +25,9 @@ const DbContext = createContext<DbContextType | undefined>(undefined);
 
 export const useDb = () => {
   const context = useContext(DbContext);
-  if (!context) throw new Error('useDb must be used within a DbProvider');
+  if (!context) {
+    throw new Error('useDb must be used within a DbProvider');
+  }
   return context;
 };
 

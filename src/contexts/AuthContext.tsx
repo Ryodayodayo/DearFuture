@@ -1,27 +1,27 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import type { User, UserCredential } from 'firebase/auth';
 import {
-  User,
-  UserCredential,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { auth } from '../firebase';
 
-interface AuthContextType {
+import { auth } from '@/firebase';
+
+type AuthContextType = {
   currentUser: User | null;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
   signup: (email: string, password: string) => Promise<UserCredential>;
   signin: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   clearError: () => void;
-}
+};
 
-interface AuthProviderProps {
+type AuthProviderProps = {
   children: React.ReactNode;
-}
+};
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -35,7 +35,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -111,7 +111,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const value = {
     currentUser,
-    loading,
+    isLoading,
     error,
     signup,
     signin,
@@ -121,7 +121,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {!isLoading && children}
     </AuthContext.Provider>
   );
 };

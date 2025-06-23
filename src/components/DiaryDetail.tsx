@@ -1,15 +1,9 @@
 import React from 'react';
+import { DiaryData } from '../types/DiaryData';
 import styles from './DiaryDetail.module.css';
 
 type DiaryDetailProps = {
-  diary: {
-    id: string;
-    title: string;
-    content?: string;
-    mood?: string;
-    createdAt?: string;
-    updatedAt?: string;
-  } | null;
+  diary: DiaryData | null;
 };
 
 export const DiaryDetail: React.FC<DiaryDetailProps> = ({ diary }) => {
